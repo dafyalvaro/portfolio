@@ -752,25 +752,117 @@
       }
     }
 
-    @media(prefers-reduced-motion:reduce) {
-      * {
-        animation: none !important;
-        transition: none !important
-      }
-
-      .reveal {
-        opacity: 1;
-        transform: none
-      }
-
-      .bar {
-        transition: none
-      }
+    @media(max-width:780px) {
+      .nav-links { display: none }
+      .stats { grid-template-columns: repeat(2,1fr) }
+      .about { grid-template-columns: 1fr }
+      .code-card { position: static }
+      footer .wrap { flex-direction: column; text-align: center }
     }
+
+    @media(prefers-reduced-motion:reduce) {
+      * { animation: none !important; transition: none !important }
+      .reveal { opacity: 1; transform: none }
+      .bar { transition: none }
+    }
+
+    /* cursor glow */
+    #cursor-glow {
+      position: fixed; width: 420px; height: 420px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,229,160,.07) 0%, transparent 70%);
+      pointer-events: none; z-index: 0; transform: translate(-50%,-50%);
+      transition: opacity .4s; will-change: transform;
+    }
+
+    /* available badge */
+    .avail-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(0,229,160,.08); border: 1px solid rgba(0,229,160,.3);
+      color: var(--acc); font-family: 'JetBrains Mono', monospace; font-size: 12px;
+      padding: 6px 14px; border-radius: 999px; margin-bottom: 22px;
+      animation: badge-in .6s ease both;
+    }
+    .avail-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--acc);
+      position: relative;
+    }
+    .avail-dot::after {
+      content: ''; position: absolute; inset: -3px; border-radius: 50%;
+      border: 2px solid var(--acc); animation: ping 1.6s ease-out infinite;
+    }
+    @keyframes ping { 0%{transform:scale(1);opacity:.8} 100%{transform:scale(2.2);opacity:0} }
+    @keyframes badge-in { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:none} }
+
+    /* card shimmer */
+    .card { overflow: hidden }
+    .card::after {
+      content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.04), transparent);
+      transition: left .55s ease; pointer-events: none;
+    }
+    .card:hover::after { left: 150% }
+
+    /* nav cta pulse ring */
+    .nav-cta { position: relative }
+    .nav-cta::before {
+      content: ''; position: absolute; inset: -4px; border-radius: 10px;
+      border: 1px solid rgba(0,229,160,.4); animation: cta-ring 2.5s ease-out infinite;
+      pointer-events: none;
+    }
+    @keyframes cta-ring { 0%,100%{opacity:0;transform:scale(1)} 50%{opacity:1;transform:scale(1.06)} }
+
+    /* stat number glow on hover */
+    .stat:hover .num { text-shadow: 0 0 20px rgba(0,229,160,.6); transition: text-shadow .3s }
+
+    /* tag pop-in stagger */
+    .tag { opacity: 0; transform: scale(.85); transition: opacity .3s, transform .3s, border-color .2s }
+    .tag.tag-in { opacity: 1; transform: scale(1) }
+
+    /* floating hire toast */
+    #hire-toast {
+      position: fixed; bottom: 32px; right: 32px; z-index: 100;
+      background: var(--panel); border: 1px solid rgba(0,229,160,.4);
+      border-radius: 14px; padding: 16px 20px; display: flex; align-items: center; gap: 14px;
+      box-shadow: 0 16px 48px rgba(0,0,0,.5); opacity: 0; transform: translateY(20px);
+      transition: opacity .5s, transform .5s; pointer-events: none; max-width: 280px;
+    }
+    #hire-toast.show { opacity: 1; transform: none; pointer-events: auto }
+    .toast-icon { font-size: 26px; line-height: 1 }
+    .toast-text { font-size: 13px; color: var(--mute); line-height: 1.5 }
+    .toast-text strong { color: var(--acc); display: block; font-family: 'JetBrains Mono', monospace; font-size: 12px; margin-bottom: 2px }
+    #hire-toast .toast-close {
+      position: absolute; top: 8px; right: 10px; font-size: 16px; color: var(--mute);
+      cursor: pointer; background: none; border: none; line-height: 1;
+    }
+    #hire-toast .toast-close:hover { color: var(--ink) }
+
+    /* magnetic button glow */
+    .btn-p { transition: transform .25s, box-shadow .25s }
+
+    /* section number count-up accent */
+    .sec-num { display: inline-block; transition: transform .3s }
+    .sec-head:hover .sec-num { transform: translateY(-3px) }
+
+    /* ocard border flash */
+    .ocard { transition: border-color .3s, transform .3s, box-shadow .3s }
+    .ocard:hover { border-color: var(--acc) }
+
+    /* social icon hover lift */
+    .socials a { display: inline-flex; align-items: center; gap: 6px; transition: color .2s, transform .2s }
+    .socials a:hover { transform: translateY(-3px) }
   </style>
 </head>
 
 <body>
+  <div id="cursor-glow"></div>
+  <div id="hire-toast">
+    <button class="toast-close" id="toast-close">&#x2715;</button>
+    <div class="toast-icon">&#x1F4BC;</div>
+    <div class="toast-text">
+      <strong>Open to Opportunities</strong>
+      Looking for internship or junior roles in data &amp; business analysis.
+    </div>
+  </div>
   <div class="scroll-prog" id="prog"></div>
   <div class="bg-fx">
     <div class="grid-bg"></div>
@@ -794,6 +886,7 @@
 
   <header>
     <div class="wrap">
+      <div class="avail-badge"><span class="avail-dot"></span>Available for hire</div>
       <div class="type-line"><span id="typed"></span><span class="cur">&nbsp;</span></div>
       <h1>I turn data into <span class="hl">decisions that make business sense.</span></h1>
       <p class="lead">a kid who loves connecting data analysis with real-world
@@ -830,9 +923,9 @@
       <div class="about reveal">
         <div>
           <p>I'm <strong>Muhammad Dafi Alvaro</strong>, an Information Systems student at Universitas Multimedia Nusantara with a strong focus on data and business analysis.</p>
-          <p>My academic background covers a broad range of technical foundations — from web development with <strong>HTML</strong> and object-oriented programming in <strong>C++</strong> and <strong>Java</strong>, to data science and machine learning with <strong>Python</strong> and database management with <strong>SQL/MySQL</strong>. I also apply these skills through tools like <strong>Tableau</strong> and <strong>Power BI</strong> to communicate findings clearly.</p>
-          <p>My core strength lies in bridging the technical and strategic sides of a problem — conducting rigorous analysis, building and evaluating predictive models, and translating the results into actionable business recommendations that stakeholders can actually use.</p>
-          <p>I believe the best analysis is not the most complex one — it is the one that answers the right question, clearly and confidently.</p>
+          <p>My academic background covers a broad range of technical foundations: web development with <strong>HTML</strong>, object-oriented programming in <strong>C++</strong> and <strong>Java</strong>, data science and machine learning with <strong>Python</strong>, and database management with <strong>SQL/MySQL</strong>. I also apply these skills through tools like <strong>Tableau</strong> and <strong>Power BI</strong> to communicate findings clearly.</p>
+          <p>My core strength lies in bridging the technical and strategic sides of a problem: conducting rigorous analysis, building and evaluating predictive models, and translating the results into actionable business recommendations that stakeholders can actually use.</p>
+          <p>I believe the best analysis is not the most complex one; it is the one that answers the right question, clearly and confidently.</p>
         </div>
         <div class="code-card">
           <div class="code-top"><span class="dot" style="background:#ff5f57"></span><span class="dot"
@@ -1105,12 +1198,65 @@
     }, { passive: true });
     const isFine = matchMedia('(pointer:fine)').matches && !matchMedia('(prefers-reduced-motion:reduce)').matches;
     if (isFine) {
+      // 3D card tilt
       document.querySelectorAll('.card').forEach(c => {
         c.addEventListener('mousemove', e => { const r = c.getBoundingClientRect(); const px = (e.clientX - r.left) / r.width - .5; const py = (e.clientY - r.top) / r.height - .5; c.style.transform = `perspective(900px) rotateY(${px * 6}deg) rotateX(${-py * 6}deg) translateY(-4px)` });
         c.addEventListener('mouseleave', () => { c.style.transform = '' });
       });
+      // skill spotlight
       document.querySelectorAll('.skill').forEach(s => { s.addEventListener('mousemove', e => { const r = s.getBoundingClientRect(); s.style.setProperty('--mx', (e.clientX - r.left) + 'px'); s.style.setProperty('--my', (e.clientY - r.top) + 'px') }) });
+
+      // cursor glow
+      const glow = document.getElementById('cursor-glow');
+      let gx = 0, gy = 0, tx = 0, ty = 0;
+      document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
+      (function animGlow() {
+        gx += (tx - gx) * .1; gy += (ty - gy) * .1;
+        glow.style.transform = `translate(${gx}px,${gy}px) translate(-50%,-50%)`;
+        requestAnimationFrame(animGlow);
+      })();
+
+      // magnetic buttons
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('mousemove', e => {
+          const r = btn.getBoundingClientRect();
+          const dx = (e.clientX - r.left - r.width / 2) * .25;
+          const dy = (e.clientY - r.top - r.height / 2) * .25;
+          btn.style.transform = `translate(${dx}px,${dy}px) translateY(-3px)`;
+        });
+        btn.addEventListener('mouseleave', () => { btn.style.transform = '' });
+      });
     }
+
+    // tag stagger on enter
+    const tagIo = new IntersectionObserver((es) => {
+      es.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.tag').forEach((t, i) => {
+            setTimeout(() => t.classList.add('tag-in'), i * 60);
+          });
+          tagIo.unobserve(e.target);
+        }
+      });
+    }, { threshold: .15 });
+    document.querySelectorAll('.skill, .card-body, .ocard').forEach(el => tagIo.observe(el));
+
+    // hire toast — show after 8s or after scrolling 60%
+    const toast = document.getElementById('hire-toast');
+    const toastClose = document.getElementById('toast-close');
+    let toastShown = false;
+    function showToast() {
+      if (toastShown) return;
+      toastShown = true;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 8000);
+    }
+    setTimeout(showToast, 8000);
+    addEventListener('scroll', () => {
+      const pct = document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
+      if (pct > .6) showToast();
+    }, { passive: true });
+    toastClose.addEventListener('click', () => { toast.classList.remove('show'); toastShown = true; });
   </script>
 </body>
 
