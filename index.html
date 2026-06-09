@@ -1,310 +1,1117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Muhammad Dafi Alvaro - Data & Business Analyst</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#0a0e14;--panel:#11161f;--line:#1e2630;--ink:#e6edf3;--mute:#7d8896;
-  --acc:#00e5a0;--acc2:#5b8cff;--warn:#ffb454;--pink:#ff6bd6;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
-::selection{background:var(--acc);color:#04110b}
-.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
-a{color:inherit;text-decoration:none}
-.bg-fx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.grid-bg{position:absolute;inset:0;
-  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
-  background-size:48px 48px;opacity:.22;mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 25%,transparent 78%)}
-.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.18;animation:float 18s infinite ease-in-out}
-.blob.a{width:520px;height:520px;background:var(--acc);top:-160px;left:-120px}
-.blob.b{width:460px;height:460px;background:var(--acc2);top:10%;right:-160px;animation-delay:-6s}
-.blob.c{width:400px;height:400px;background:var(--pink);bottom:-140px;left:30%;animation-delay:-12s;opacity:.12}
-@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-50px) scale(1.1)}66%{transform:translate(-30px,30px) scale(.95)}}
-nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);background:rgba(10,14,20,.7);border-bottom:1px solid var(--line);transition:transform .35s}
-nav.hide{transform:translateY(-100%)}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:15px;letter-spacing:-.5px}
-.logo span{color:var(--acc)}
-.nav-links{display:flex;gap:30px;font-size:14px;font-weight:500}
-.nav-links a{color:var(--mute);transition:color .2s;position:relative}
-.nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--acc);transition:width .25s}
-.nav-links a:hover{color:var(--ink)}
-.nav-links a:hover::after{width:100%}
-.nav-cta{font-family:'JetBrains Mono',monospace;font-size:13px;border:1px solid var(--acc);color:var(--acc);padding:8px 16px;border-radius:6px;transition:.2s}
-.nav-cta:hover{background:var(--acc);color:#04110b;box-shadow:0 0 22px rgba(0,229,160,.45)}
-header{position:relative;z-index:1;padding:150px 0 90px;min-height:92vh;display:flex;align-items:center}
-.type-line{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--acc2);margin-bottom:18px;height:22px}
-.type-line .cur{display:inline-block;width:9px;background:var(--acc);margin-left:2px;animation:blink 1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(42px,7.5vw,82px);line-height:1.01;letter-spacing:-2.5px;margin-bottom:28px;max-width:18ch}
-h1 .hl{background:linear-gradient(120deg,var(--acc),var(--acc2) 60%,var(--pink));background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 6s linear infinite}
-@keyframes shine{to{background-position:200% center}}
-.lead{font-size:19px;color:var(--mute);max-width:600px;margin-bottom:40px}
-.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
-.btn{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;padding:15px 28px;border-radius:8px;transition:.25s;cursor:pointer;border:1px solid transparent;position:relative;overflow:hidden}
-.btn-p{background:var(--acc);color:#04110b}
-.btn-p:hover{transform:translateY(-3px);box-shadow:0 10px 34px rgba(0,229,160,.4)}
-.btn-s{border-color:var(--line);color:var(--ink)}
-.btn-s:hover{border-color:var(--acc);color:var(--acc);transform:translateY(-3px)}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:72px}
-.stat{background:var(--panel);padding:28px 22px;position:relative;transition:.3s}
-.stat:hover{background:#161d28}
-.stat .num{font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;color:var(--acc);letter-spacing:-1px}
-.stat .lbl{font-size:13px;color:var(--mute);margin-top:4px}
-section{position:relative;z-index:1;padding:100px 0}
-.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:50px}
-.sec-num{font-family:'JetBrains Mono',monospace;color:var(--acc);font-size:15px}
-.sec-title{font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:600;letter-spacing:-1px}
-.sec-line{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
-.about{display:grid;grid-template-columns:1.4fr 1fr;gap:54px;align-items:start}
-.about p{color:var(--mute);font-size:16px;margin-bottom:20px}
-.about p strong{color:var(--ink)}
-.code-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;font-family:'JetBrains Mono',monospace;font-size:13px;overflow:hidden;position:sticky;top:90px;transition:.3s}
-.code-card:hover{border-color:var(--acc2);box-shadow:0 12px 40px rgba(0,0,0,.4)}
-.code-top{display:flex;gap:7px;padding:14px 16px;border-bottom:1px solid var(--line)}
-.dot{width:11px;height:11px;border-radius:50%}
-.code-body{padding:18px 16px;line-height:1.85}
-.cm{color:var(--mute)}.ck{color:var(--acc2)}.cs{color:var(--acc)}.cn{color:var(--warn)}
-.skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
-.skill{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px;transition:.3s;position:relative;overflow:hidden}
-.skill::before{content:"";position:absolute;inset:0;background:radial-gradient(300px circle at var(--mx,50%) var(--my,50%),rgba(0,229,160,.08),transparent 60%);opacity:0;transition:opacity .3s}
-.skill:hover::before{opacity:1}
-.skill:hover{border-color:var(--acc);transform:translateY(-4px)}
-.skill h4{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--acc);margin-bottom:14px}
-.tag{display:inline-block;font-size:12px;background:var(--bg);border:1px solid var(--line);color:var(--mute);padding:5px 11px;border-radius:6px;margin:4px 4px 0 0;transition:.2s}
-.skill:hover .tag{border-color:#2a3441}
-.proj{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:22px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s;transform-style:preserve-3d;will-change:transform}
-.card:hover{border-color:var(--acc2);box-shadow:0 20px 50px rgba(0,0,0,.5)}
-.card-viz{height:150px;border-bottom:1px solid var(--line);display:flex;align-items:flex-end;gap:6px;padding:20px;background:linear-gradient(180deg,transparent,rgba(91,140,255,.05));overflow:hidden}
-.bar{flex:1;border-radius:3px 3px 0 0;height:0;transition:height 1s cubic-bezier(.2,.8,.2,1)}
-.card-body{padding:24px}
-.card-body .pill{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--acc);letter-spacing:.5px;text-transform:uppercase}
-.card-body h3{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600;margin:8px 0 10px;line-height:1.25}
-.card-body p{color:var(--mute);font-size:14px;margin-bottom:16px}
-.card-stat{display:flex;gap:22px;font-size:13px;border-top:1px solid var(--line);padding-top:14px}
-.card-stat b{color:var(--acc);font-family:'JetBrains Mono',monospace;font-size:16px}
-.card-stat span{color:var(--mute);display:block;font-size:11px}
-.card-tags{margin-top:14px}
-.other{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
-.ocard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px;transition:.3s}
-.ocard:hover{border-color:var(--acc2);transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.4)}
-.ocard .yr{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute)}
-.ocard h4{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;margin:6px 0 8px}
-.ocard p{color:var(--mute);font-size:13px;margin-bottom:12px}
-.contact{text-align:center;padding:120px 0}
-.contact h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(34px,5.5vw,58px);font-weight:700;letter-spacing:-1.5px;margin-bottom:20px}
-.contact h2 .hl{background:linear-gradient(120deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.contact p{color:var(--mute);font-size:18px;max-width:500px;margin:0 auto 36px}
-.mono-link{font-family:'JetBrains Mono',monospace;color:var(--acc);font-size:17px;border-bottom:1px solid transparent;transition:.2s;display:inline-block}
-.mono-link:hover{border-color:var(--acc);transform:translateY(-2px)}
-.socials{display:flex;gap:18px;justify-content:center;margin-top:30px;flex-wrap:wrap}
-.socials a{color:var(--mute);font-family:'JetBrains Mono',monospace;font-size:14px;transition:.2s}
-.socials a:hover{color:var(--acc)}
-footer{border-top:1px solid var(--line);padding:30px 0;position:relative;z-index:1}
-footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var(--mute);font-family:'JetBrains Mono',monospace;flex-wrap:wrap;gap:10px}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
-.reveal.in{opacity:1;transform:none}
-.scroll-prog{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--acc),var(--acc2));z-index:60;width:0}
-@media(max-width:780px){.nav-links{display:none}.stats{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}.code-card{position:static}footer .wrap{flex-direction:column;text-align:center}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.bar{transition:none}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muhammad Dafi Alvaro - Data & Business Analyst</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0e14;
+      --panel: #11161f;
+      --line: #1e2630;
+      --ink: #e6edf3;
+      --mute: #7d8896;
+      --acc: #00e5a0;
+      --acc2: #5b8cff;
+      --warn: #ffb454;
+      --pink: #ff6bd6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden
+    }
+
+    ::selection {
+      background: var(--acc);
+      color: #04110b
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 28px
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    .bg-fx {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden
+    }
+
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: .22;
+      mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 25%, transparent 78%)
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: .18;
+      animation: float 18s infinite ease-in-out
+    }
+
+    .blob.a {
+      width: 520px;
+      height: 520px;
+      background: var(--acc);
+      top: -160px;
+      left: -120px
+    }
+
+    .blob.b {
+      width: 460px;
+      height: 460px;
+      background: var(--acc2);
+      top: 10%;
+      right: -160px;
+      animation-delay: -6s
+    }
+
+    .blob.c {
+      width: 400px;
+      height: 400px;
+      background: var(--pink);
+      bottom: -140px;
+      left: 30%;
+      animation-delay: -12s;
+      opacity: .12
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1)
+      }
+
+      33% {
+        transform: translate(40px, -50px) scale(1.1)
+      }
+
+      66% {
+        transform: translate(-30px, 30px) scale(.95)
+      }
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(10, 14, 20, .7);
+      border-bottom: 1px solid var(--line);
+      transition: transform .35s
+    }
+
+    nav.hide {
+      transform: translateY(-100%)
+    }
+
+    nav .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px
+    }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -.5px
+    }
+
+    .logo span {
+      color: var(--acc)
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      font-size: 14px;
+      font-weight: 500
+    }
+
+    .nav-links a {
+      color: var(--mute);
+      transition: color .2s;
+      position: relative
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: var(--acc);
+      transition: width .25s
+    }
+
+    .nav-links a:hover {
+      color: var(--ink)
+    }
+
+    .nav-links a:hover::after {
+      width: 100%
+    }
+
+    .nav-cta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      border: 1px solid var(--acc);
+      color: var(--acc);
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: .2s
+    }
+
+    .nav-cta:hover {
+      background: var(--acc);
+      color: #04110b;
+      box-shadow: 0 0 22px rgba(0, 229, 160, .45)
+    }
+
+    header {
+      position: relative;
+      z-index: 1;
+      padding: 150px 0 90px;
+      min-height: 92vh;
+      display: flex;
+      align-items: center
+    }
+
+    .type-line {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      color: var(--acc2);
+      margin-bottom: 18px;
+      height: 22px
+    }
+
+    .type-line .cur {
+      display: inline-block;
+      width: 9px;
+      background: var(--acc);
+      margin-left: 2px;
+      animation: blink 1s steps(1) infinite
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0
+      }
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(42px, 7.5vw, 82px);
+      line-height: 1.01;
+      letter-spacing: -2.5px;
+      margin-bottom: 28px;
+      max-width: 18ch
+    }
+
+    h1 .hl {
+      background: linear-gradient(120deg, var(--acc), var(--acc2) 60%, var(--pink));
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 6s linear infinite
+    }
+
+    @keyframes shine {
+      to {
+        background-position: 200% center
+      }
+    }
+
+    .lead {
+      font-size: 19px;
+      color: var(--mute);
+      max-width: 600px;
+      margin-bottom: 40px
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap
+    }
+
+    .btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 15px 28px;
+      border-radius: 8px;
+      transition: .25s;
+      cursor: pointer;
+      border: 1px solid transparent;
+      position: relative;
+      overflow: hidden
+    }
+
+    .btn-p {
+      background: var(--acc);
+      color: #04110b
+    }
+
+    .btn-p:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 34px rgba(0, 229, 160, .4)
+    }
+
+    .btn-s {
+      border-color: var(--line);
+      color: var(--ink)
+    }
+
+    .btn-s:hover {
+      border-color: var(--acc);
+      color: var(--acc);
+      transform: translateY(-3px)
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-top: 72px
+    }
+
+    .stat {
+      background: var(--panel);
+      padding: 28px 22px;
+      position: relative;
+      transition: .3s
+    }
+
+    .stat:hover {
+      background: #161d28
+    }
+
+    .stat .num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--acc);
+      letter-spacing: -1px
+    }
+
+    .stat .lbl {
+      font-size: 13px;
+      color: var(--mute);
+      margin-top: 4px
+    }
+
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 100px 0
+    }
+
+    .sec-head {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 50px
+    }
+
+    .sec-num {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--acc);
+      font-size: 15px
+    }
+
+    .sec-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: -1px
+    }
+
+    .sec-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--line), transparent)
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 54px;
+      align-items: start
+    }
+
+    .about p {
+      color: var(--mute);
+      font-size: 16px;
+      margin-bottom: 20px
+    }
+
+    .about p strong {
+      color: var(--ink)
+    }
+
+    .code-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      overflow: hidden;
+      position: sticky;
+      top: 90px;
+      transition: .3s
+    }
+
+    .code-card:hover {
+      border-color: var(--acc2);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, .4)
+    }
+
+    .code-top {
+      display: flex;
+      gap: 7px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%
+    }
+
+    .code-body {
+      padding: 18px 16px;
+      line-height: 1.85
+    }
+
+    .cm {
+      color: var(--mute)
+    }
+
+    .ck {
+      color: var(--acc2)
+    }
+
+    .cs {
+      color: var(--acc)
+    }
+
+    .cn {
+      color: var(--warn)
+    }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px
+    }
+
+    .skill {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 24px;
+      transition: .3s;
+      position: relative;
+      overflow: hidden
+    }
+
+    .skill::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%), rgba(0, 229, 160, .08), transparent 60%);
+      opacity: 0;
+      transition: opacity .3s
+    }
+
+    .skill:hover::before {
+      opacity: 1
+    }
+
+    .skill:hover {
+      border-color: var(--acc);
+      transform: translateY(-4px)
+    }
+
+    .skill h4 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--acc);
+      margin-bottom: 14px
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      color: var(--mute);
+      padding: 5px 11px;
+      border-radius: 6px;
+      margin: 4px 4px 0 0;
+      transition: .2s
+    }
+
+    .skill:hover .tag {
+      border-color: #2a3441
+    }
+
+    .proj {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 22px
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+      transform-style: preserve-3d;
+      will-change: transform
+    }
+
+    .card:hover {
+      border-color: var(--acc2);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .5)
+    }
+
+    .card-viz {
+      height: 150px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      padding: 20px;
+      background: linear-gradient(180deg, transparent, rgba(91, 140, 255, .05));
+      overflow: hidden
+    }
+
+    .bar {
+      flex: 1;
+      border-radius: 3px 3px 0 0;
+      height: 0;
+      transition: height 1s cubic-bezier(.2, .8, .2, 1)
+    }
+
+    .card-body {
+      padding: 24px
+    }
+
+    .card-body .pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--acc);
+      letter-spacing: .5px;
+      text-transform: uppercase
+    }
+
+    .card-body h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin: 8px 0 10px;
+      line-height: 1.25
+    }
+
+    .card-body p {
+      color: var(--mute);
+      font-size: 14px;
+      margin-bottom: 16px
+    }
+
+    .card-stat {
+      display: flex;
+      gap: 22px;
+      font-size: 13px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px
+    }
+
+    .card-stat b {
+      color: var(--acc);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px
+    }
+
+    .card-stat span {
+      color: var(--mute);
+      display: block;
+      font-size: 11px
+    }
+
+    .card-tags {
+      margin-top: 14px
+    }
+
+    .other {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px
+    }
+
+    .ocard {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 22px;
+      transition: .3s
+    }
+
+    .ocard:hover {
+      border-color: var(--acc2);
+      transform: translateY(-4px);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, .4)
+    }
+
+    .ocard .yr {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--mute)
+    }
+
+    .ocard h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      margin: 6px 0 8px
+    }
+
+    .ocard p {
+      color: var(--mute);
+      font-size: 13px;
+      margin-bottom: 12px
+    }
+
+    .contact {
+      text-align: center;
+      padding: 120px 0
+    }
+
+    .contact h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(34px, 5.5vw, 58px);
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px
+    }
+
+    .contact h2 .hl {
+      background: linear-gradient(120deg, var(--acc), var(--acc2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+
+    .contact p {
+      color: var(--mute);
+      font-size: 18px;
+      max-width: 500px;
+      margin: 0 auto 36px
+    }
+
+    .mono-link {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--acc);
+      font-size: 17px;
+      border-bottom: 1px solid transparent;
+      transition: .2s;
+      display: inline-block
+    }
+
+    .mono-link:hover {
+      border-color: var(--acc);
+      transform: translateY(-2px)
+    }
+
+    .socials {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      margin-top: 30px;
+      flex-wrap: wrap
+    }
+
+    .socials a {
+      color: var(--mute);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      transition: .2s
+    }
+
+    .socials a:hover {
+      color: var(--acc)
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 30px 0;
+      position: relative;
+      z-index: 1
+    }
+
+    footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--mute);
+      font-family: 'JetBrains Mono', monospace;
+      flex-wrap: wrap;
+      gap: 10px
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s, transform .7s
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none
+    }
+
+    .scroll-prog {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--acc), var(--acc2));
+      z-index: 60;
+      width: 0
+    }
+
+    @media(max-width:780px) {
+      .nav-links {
+        display: none
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .about {
+        grid-template-columns: 1fr
+      }
+
+      .code-card {
+        position: static
+      }
+
+      footer .wrap {
+        flex-direction: column;
+        text-align: center
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      * {
+        animation: none !important;
+        transition: none !important
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none
+      }
+
+      .bar {
+        transition: none
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="scroll-prog" id="prog"></div>
-<div class="bg-fx">
-  <div class="grid-bg"></div>
-  <div class="blob a"></div><div class="blob b"></div><div class="blob c"></div>
-</div>
-
-<nav id="nav">
-  <div class="wrap">
-    <div class="logo">dafi's<span>.</span>cartera</div>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#work">Projects</a>
-      <a href="#other">More</a>
-    </div>
-    <a href="#contact" class="nav-cta">Contact</a>
+  <div class="scroll-prog" id="prog"></div>
+  <div class="bg-fx">
+    <div class="grid-bg"></div>
+    <div class="blob a"></div>
+    <div class="blob b"></div>
+    <div class="blob c"></div>
   </div>
-</nav>
 
-<header>
-  <div class="wrap">
-    <div class="type-line"><span id="typed"></span><span class="cur">&nbsp;</span></div>
-    <h1>I turn data into <span class="hl">decisions that make business sense.</span></h1>
-    <p class="lead">A Universitas Multimedia Nusantara student who loves connecting data analysis with real-world needs. I enjoy turning numbers and models into recommendations people can actually act on.</p>
-    <div class="hero-cta">
-      <a href="#work" class="btn btn-p">View my projects</a>
-      <a href="#contact" class="btn btn-s">Get in touch</a>
-    </div>
-    <div class="stats">
-      <div class="stat"><div class="num" data-target="97" data-suffix="%">0</div><div class="lbl">Best classification model accuracy</div></div>
-      <div class="stat"><div class="num" data-target="4">0</div><div class="lbl">Core analytics projects</div></div>
-      <div class="stat"><div class="num" data-target="11" data-suffix="+">0</div><div class="lbl">Total academic projects</div></div>
-      <div class="stat"><div class="num" data-target="3">0</div><div class="lbl">Domains: health, social, transport</div></div>
-    </div>
-  </div>
-</header>
-
-<section id="about">
-  <div class="wrap">
-    <div class="sec-head reveal"><span class="sec-num">01</span><span class="sec-title">About Me</span><span class="sec-line"></span></div>
-    <div class="about reveal">
-      <div>
-        <p>Hi, I'm <strong>Muhammad Dafi Alvaro</strong>, a student at Universitas Multimedia Nusantara focused on data and business analysis.</p>
-        <p>I like sitting in the middle, between the data and the people who have to make decisions. Across my projects, I've gotten used to understanding the problem, digging into the relevant data, and turning it into recommendations that are easy to grasp.</p>
-        <p>I handle the technical side too, from cleaning data and comparing several models to presenting it all in clear visualizations.</p>
-        <p>For me, a good analysis isn't the most complex one, it's the one that answers the question clearly.</p>
+  <nav id="nav">
+    <div class="wrap">
+      <div class="logo">dafi's<span>.</span>Portafolio</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#work">Projects</a>
+        <a href="#other">More</a>
       </div>
-      <div class="code-card">
-        <div class="code-top"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span></div>
-        <div class="code-body">
-          <span class="cm"># profile.py</span><br>
-          <span class="ck">profile</span> = {<br>
-          &nbsp;&nbsp;<span class="cs">"school"</span>: <span class="cs">"UMN"</span>,<br>
-          &nbsp;&nbsp;<span class="cs">"roles"</span>: [<span class="cs">"data"</span>, <span class="cs">"business analyst"</span>],<br>
-          &nbsp;&nbsp;<span class="cs">"tools"</span>: [<span class="cs">"SQL"</span>, <span class="cs">"Python"</span>, <span class="cs">"Tableau"</span>],<br>
-          &nbsp;&nbsp;<span class="cs">"focus"</span>: <span class="cs">"data into decisions"</span>,<br>
-          &nbsp;&nbsp;<span class="cs">"status"</span>: <span class="cs">"open to opportunities"</span><br>
-          }
+      <a href="#contact" class="nav-cta">Contact</a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="wrap">
+      <div class="type-line"><span id="typed"></span><span class="cur">&nbsp;</span></div>
+      <h1>I turn data into <span class="hl">decisions that make business sense.</span></h1>
+      <p class="lead">A Universitas Multimedia Nusantara student who loves connecting data analysis with real-world
+        needs. I enjoy turning numbers and models into recommendations people can actually act on.</p>
+      <div class="hero-cta">
+        <a href="#work" class="btn btn-p">View my projects</a>
+        <a href="#contact" class="btn btn-s">Get in touch</a>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="num" data-target="97" data-suffix="%">0</div>
+          <div class="lbl">Best classification model accuracy</div>
+        </div>
+        <div class="stat">
+          <div class="num" data-target="4">0</div>
+          <div class="lbl">Core analytics projects</div>
+        </div>
+        <div class="stat">
+          <div class="num" data-target="11" data-suffix="+">0</div>
+          <div class="lbl">Total academic projects</div>
+        </div>
+        <div class="stat">
+          <div class="num" data-target="3">0</div>
+          <div class="lbl">Domains: health, social, transport</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </header>
 
-<section id="skills">
-  <div class="wrap">
-    <div class="sec-head reveal"><span class="sec-num">02</span><span class="sec-title">Skills</span><span class="sec-line"></span></div>
-    <div class="skill-grid">
-      <div class="skill reveal"><h4>// Business Analysis</h4><span class="tag">Requirements Analysis</span><span class="tag">Process Mapping</span><span class="tag">Insight to Recommendation</span></div>
-      <div class="skill reveal"><h4>// Data Analysis</h4><span class="tag">Data Analysis</span><span class="tag">Exploratory Data Analysis</span><span class="tag">Feature Engineering</span><span class="tag">Result Evaluation</span></div>
-      <div class="skill reveal"><h4>// Visualization &amp; Reporting</h4><span class="tag">Tableau</span><span class="tag">Data Visualization</span><span class="tag">Dashboards</span></div>
-      <div class="skill reveal"><h4>// Languages &amp; Tools</h4><span class="tag">Python</span><span class="tag">SQL / MySQL</span><span class="tag">Java</span></div>
-      <div class="skill reveal"><h4>// Modeling</h4><span class="tag">Classification</span><span class="tag">Clustering</span><span class="tag">K-Means</span><span class="tag">Gaussian Mixture Model</span><span class="tag">XGBoost</span><span class="tag">Gradient Boosting</span><span class="tag">Natural Language Processing</span></div>
-      <div class="skill reveal"><h4>// Other</h4><span class="tag">Database Development</span><span class="tag">UX Design</span><span class="tag">Project Management</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="work">
-  <div class="wrap">
-    <div class="sec-head reveal"><span class="sec-num">03</span><span class="sec-title">Featured Projects</span><span class="sec-line"></span></div>
-    <div class="proj">
-
-      <div class="card reveal">
-        <div class="card-viz"><div class="bar" data-h="97" style="background:linear-gradient(180deg,var(--acc2),rgba(91,140,255,.3))"></div><div class="bar" data-h="96" style="background:linear-gradient(180deg,var(--acc2),rgba(91,140,255,.3))"></div><div class="bar" data-h="87" style="background:linear-gradient(180deg,var(--acc2),rgba(91,140,255,.3))"></div><div class="bar" data-h="84" style="background:linear-gradient(180deg,var(--acc2),rgba(91,140,255,.3))"></div><div class="bar" data-h="83" style="background:linear-gradient(180deg,var(--acc2),rgba(91,140,255,.3))"></div><div class="bar" data-h="75" style="background:linear-gradient(180deg,var(--acc2),rgba(91,140,255,.3))"></div></div>
-        <div class="card-body">
-          <span class="pill">Analytics &middot; Mental Health</span>
-          <h3>Early Detection of Student Depression Risk</h3>
-          <p>Compared six models to predict students' depression levels from the PHQ-9 questionnaire. The results can serve as the basis for an early-warning system so campuses can step in sooner.</p>
-          <div class="card-stat"><div><b>97%</b><span>best accuracy</span></div><div><b>6</b><span>models compared</span></div></div>
-          <div class="card-tags"><span class="tag">Python</span><span class="tag">Data Analysis</span></div>
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="sec-num">01</span><span class="sec-title">About Me</span><span
+          class="sec-line"></span></div>
+      <div class="about reveal">
+        <div>
+          <p>Hi, I'm <strong>Muhammad Dafi Alvaro</strong>, a student at Universitas Multimedia Nusantara focused on
+            data and business analysis.</p>
+          <p>I like sitting in the middle, between the data and the people who have to make decisions. Across my
+            projects, I've gotten used to understanding the problem, digging into the relevant data, and turning it into
+            recommendations that are easy to grasp.</p>
+          <p>I handle the technical side too, from cleaning data and comparing several models to presenting it all in
+            clear visualizations.</p>
+          <p>For me, a good analysis isn't the most complex one, it's the one that answers the question clearly.</p>
+        </div>
+        <div class="code-card">
+          <div class="code-top"><span class="dot" style="background:#ff5f57"></span><span class="dot"
+              style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span></div>
+          <div class="code-body">
+            <span class="cm"># profile.py</span><br>
+            <span class="ck">profile</span> = {<br>
+            &nbsp;&nbsp;<span class="cs">"Nickname"</span>: <span class="cs">"dafy"</span>,<br>
+            &nbsp;&nbsp;<span class="cs">"roles"</span>: [<span class="cs">"data"</span>, <span class="cs">"business
+              analyst"</span>],<br>
+            &nbsp;&nbsp;<span class="cs">"tools"</span>: [<span class="cs">"SQL"</span>, <span
+              class="cs">"Python"</span>, <span class="cs">"Tableau"</span>],<br>
+            &nbsp;&nbsp;<span class="cs">"focus"</span>: <span class="cs">"data into decisions"</span>,<br>
+            &nbsp;&nbsp;<span class="cs">"status"</span>: <span class="cs">"open to opportunities"</span><br>
+            }
+          </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="card reveal">
-        <div class="card-viz"><div class="bar" data-h="55" style="background:linear-gradient(180deg,var(--acc),rgba(0,229,160,.3))"></div><div class="bar" data-h="72" style="background:linear-gradient(180deg,var(--acc),rgba(0,229,160,.3))"></div><div class="bar" data-h="68" style="background:linear-gradient(180deg,var(--acc),rgba(0,229,160,.3))"></div><div class="bar" data-h="88" style="background:linear-gradient(180deg,var(--acc),rgba(0,229,160,.3))"></div><div class="bar" data-h="95" style="background:linear-gradient(180deg,var(--acc),rgba(0,229,160,.3))"></div><div class="bar" data-h="80" style="background:linear-gradient(180deg,var(--acc),rgba(0,229,160,.3))"></div></div>
-        <div class="card-body">
-          <span class="pill">Text Analytics &middot; Content Moderation</span>
-          <h3>Hate Speech &amp; Sarcasm Detection</h3>
-          <p>A two-stage system to filter hate speech and sarcasm on Twitter/X. I tested several approaches and picked the most accurate one as the basis for more reliable content moderation.</p>
-          <div class="card-stat"><div><b>BERTweet</b><span>best model</span></div><div><b>2 stages</b><span>filtering + classification</span></div></div>
-          <div class="card-tags"><span class="tag">Natural Language Processing</span><span class="tag">Python</span></div>
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="sec-num">02</span><span class="sec-title">Skills</span><span
+          class="sec-line"></span></div>
+      <div class="skill-grid">
+        <div class="skill reveal">
+          <h4>// Business Analysis</h4><span class="tag">Requirements Analysis</span><span class="tag">Process
+            Mapping</span><span class="tag">Insight to Recommendation</span>
+        </div>
+        <div class="skill reveal">
+          <h4>// Data Analysis</h4><span class="tag">Data Analysis</span><span class="tag">Exploratory Data
+            Analysis</span><span class="tag">Feature Engineering</span><span class="tag">Result Evaluation</span>
+        </div>
+        <div class="skill reveal">
+          <h4>// Visualization &amp; Reporting</h4><span class="tag">Tableau</span><span class="tag">Data
+            Visualization</span><span class="tag">Dashboards</span>
+        </div>
+        <div class="skill reveal">
+          <h4>// Languages &amp; Tools</h4><span class="tag">Python</span><span class="tag">SQL / MySQL</span><span
+            class="tag">Java</span>
+        </div>
+        <div class="skill reveal">
+          <h4>// Modeling</h4><span class="tag">Classification</span><span class="tag">Clustering</span><span
+            class="tag">K-Means</span><span class="tag">Gaussian Mixture Model</span><span
+            class="tag">XGBoost</span><span class="tag">Gradient Boosting</span><span class="tag">Natural Language
+            Processing</span>
+        </div>
+        <div class="skill reveal">
+          <h4>// Other</h4><span class="tag">Database Development</span><span class="tag">UX Design</span><span
+            class="tag">Project Management</span>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="card reveal">
-        <div class="card-viz"><div class="bar" data-h="45" style="background:linear-gradient(180deg,var(--warn),rgba(255,180,84,.3))"></div><div class="bar" data-h="78" style="background:linear-gradient(180deg,var(--warn),rgba(255,180,84,.3))"></div><div class="bar" data-h="60" style="background:linear-gradient(180deg,var(--warn),rgba(255,180,84,.3))"></div><div class="bar" data-h="92" style="background:linear-gradient(180deg,var(--warn),rgba(255,180,84,.3))"></div><div class="bar" data-h="70" style="background:linear-gradient(180deg,var(--warn),rgba(255,180,84,.3))"></div><div class="bar" data-h="85" style="background:linear-gradient(180deg,var(--warn),rgba(255,180,84,.3))"></div></div>
-        <div class="card-body">
-          <span class="pill">Segmentation &middot; Health</span>
-          <h3>Heart Disease Risk Segmentation</h3>
-          <p>Grouped individuals by lifestyle and health history using the public BRFSS 2020 dataset. Segmentation like this helps decide which groups need attention first.</p>
-          <div class="card-stat"><div><b>K-Means+GMM</b><span>methods</span></div><div><b>BRFSS 2020</b><span>dataset</span></div></div>
-          <div class="card-tags"><span class="tag">Python</span><span class="tag">Data Analysis</span></div>
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="sec-num">03</span><span class="sec-title">Featured Projects</span><span
+          class="sec-line"></span></div>
+      <div class="proj">
+
+        <div class="card reveal">
+          <div class="card-viz">
+            <div class="bar" data-h="97" style="background:linear-gradient(180deg,var(--acc2),rgba(91,140,255,.3))">
+            </div>
+            <div class="bar" data-h="96" style="background:linear-gradient(180deg,var(--acc2),rgba(91,140,255,.3))">
+            </div>
+            <div class="bar" data-h="87" style="background:linear-gradient(180deg,var(--acc2),rgba(91,140,255,.3))">
+            </div>
+            <div class="bar" data-h="84" style="background:linear-gradient(180deg,var(--acc2),rgba(91,140,255,.3))">
+            </div>
+            <div class="bar" data-h="83" style="background:linear-gradient(180deg,var(--acc2),rgba(91,140,255,.3))">
+            </div>
+            <div class="bar" data-h="75" style="background:linear-gradient(180deg,var(--acc2),rgba(91,140,255,.3))">
+            </div>
+          </div>
+          <div class="card-body">
+            <span class="pill">Analytics &middot; Mental Health</span>
+            <h3>Early Detection of Student Depression Risk</h3>
+            <p>Compared six models to predict students' depression levels from the PHQ-9 questionnaire. The results can
+              serve as the basis for an early-warning system so campuses can step in sooner.</p>
+            <div class="card-stat">
+              <div><b>97%</b><span>best accuracy</span></div>
+              <div><b>6</b><span>models compared</span></div>
+            </div>
+            <div class="card-tags"><span class="tag">Python</span><span class="tag">Data Analysis</span></div>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-viz">
+            <div class="bar" data-h="55" style="background:linear-gradient(180deg,var(--acc),rgba(0,229,160,.3))"></div>
+            <div class="bar" data-h="72" style="background:linear-gradient(180deg,var(--acc),rgba(0,229,160,.3))"></div>
+            <div class="bar" data-h="68" style="background:linear-gradient(180deg,var(--acc),rgba(0,229,160,.3))"></div>
+            <div class="bar" data-h="88" style="background:linear-gradient(180deg,var(--acc),rgba(0,229,160,.3))"></div>
+            <div class="bar" data-h="95" style="background:linear-gradient(180deg,var(--acc),rgba(0,229,160,.3))"></div>
+            <div class="bar" data-h="80" style="background:linear-gradient(180deg,var(--acc),rgba(0,229,160,.3))"></div>
+          </div>
+          <div class="card-body">
+            <span class="pill">Text Analytics &middot; Content Moderation</span>
+            <h3>Hate Speech &amp; Sarcasm Detection</h3>
+            <p>A two-stage system to filter hate speech and sarcasm on Twitter/X. I tested several approaches and picked
+              the most accurate one as the basis for more reliable content moderation.</p>
+            <div class="card-stat">
+              <div><b>BERTweet</b><span>best model</span></div>
+              <div><b>2 stages</b><span>filtering + classification</span></div>
+            </div>
+            <div class="card-tags"><span class="tag">Natural Language Processing</span><span class="tag">Python</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-viz">
+            <div class="bar" data-h="45" style="background:linear-gradient(180deg,var(--warn),rgba(255,180,84,.3))">
+            </div>
+            <div class="bar" data-h="78" style="background:linear-gradient(180deg,var(--warn),rgba(255,180,84,.3))">
+            </div>
+            <div class="bar" data-h="60" style="background:linear-gradient(180deg,var(--warn),rgba(255,180,84,.3))">
+            </div>
+            <div class="bar" data-h="92" style="background:linear-gradient(180deg,var(--warn),rgba(255,180,84,.3))">
+            </div>
+            <div class="bar" data-h="70" style="background:linear-gradient(180deg,var(--warn),rgba(255,180,84,.3))">
+            </div>
+            <div class="bar" data-h="85" style="background:linear-gradient(180deg,var(--warn),rgba(255,180,84,.3))">
+            </div>
+          </div>
+          <div class="card-body">
+            <span class="pill">Segmentation &middot; Health</span>
+            <h3>Heart Disease Risk Segmentation</h3>
+            <p>Grouped individuals by lifestyle and health history using the public BRFSS 2020 dataset. Segmentation
+              like this helps decide which groups need attention first.</p>
+            <div class="card-stat">
+              <div><b>K-Means+GMM</b><span>methods</span></div>
+              <div><b>BRFSS 2020</b><span>dataset</span></div>
+            </div>
+            <div class="card-tags"><span class="tag">Python</span><span class="tag">Data Analysis</span></div>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-viz">
+            <div class="bar" data-h="30" style="background:linear-gradient(180deg,var(--pink),rgba(255,107,214,.3))">
+            </div>
+            <div class="bar" data-h="50" style="background:linear-gradient(180deg,var(--pink),rgba(255,107,214,.3))">
+            </div>
+            <div class="bar" data-h="42" style="background:linear-gradient(180deg,var(--pink),rgba(255,107,214,.3))">
+            </div>
+            <div class="bar" data-h="65" style="background:linear-gradient(180deg,var(--pink),rgba(255,107,214,.3))">
+            </div>
+            <div class="bar" data-h="58" style="background:linear-gradient(180deg,var(--pink),rgba(255,107,214,.3))">
+            </div>
+            <div class="bar" data-h="80" style="background:linear-gradient(180deg,var(--pink),rgba(255,107,214,.3))">
+            </div>
+          </div>
+          <div class="card-body">
+            <span class="pill">Dashboard &middot; Tableau</span>
+            <h3>NYC Traffic Accident Patterns Dashboard</h3>
+            <p>Six interactive Tableau visualizations to read traffic accident patterns in New York City, covering
+              victims, causes, timing, and location. Designed so even a non-technical reader can grasp the insights at a
+              glance.</p>
+            <div class="card-stat">
+              <div><b>6 views</b><span>dashboard</span></div>
+              <div><b>4 dimensions</b><span>victim/cause/time/location</span></div>
+            </div>
+            <div class="card-tags"><span class="tag">Tableau</span><span class="tag">Data Visualization</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="other">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="sec-num">04</span><span class="sec-title">More Projects</span><span
+          class="sec-line"></span></div>
+      <div class="other">
+        <div class="ocard reveal">
+          <div class="yr">2025</div>
+          <h4>Import-ant</h4>
+          <p>An app to help first-time importers and SMEs estimate import costs and choose a logistics provider. Built
+            from a needs analysis of two user segments.</p><span class="tag">Requirements Analysis</span><span
+            class="tag">UX Design</span>
+        </div>
+        <div class="ocard reveal">
+          <div class="yr">2025</div>
+          <h4>GarageLive</h4>
+          <p>An automotive workshop app concept aimed at improving service efficiency, complete with a cost plan and a
+            map of team responsibilities.</p><span class="tag">Project Management</span><span class="tag">UX
+            Design</span>
+        </div>
+        <div class="ocard reveal">
+          <div class="yr">2024 / 2025</div>
+          <h4>SkillSync</h4>
+          <p>A web platform connecting individual skills with company needs through training courses.</p><span
+            class="tag">Database</span><span class="tag">HTML</span>
+        </div>
+        <div class="ocard reveal">
+          <div class="yr">2025</div>
+          <h4>ALEXANDRIA</h4>
+          <p>A digital book-lending system to manage transactions and monitor library stock.</p><span
+            class="tag">MySQL</span><span class="tag">Visual Studio</span>
+        </div>
+        <div class="ocard reveal">
+          <div class="yr">2025</div>
+          <h4>Jaga Mentalmu</h4>
+          <p>A digital mental health service app for online consultations with psychologists and psychiatrists.</p><span
+            class="tag">UX Design</span>
+        </div>
+        <div class="ocard reveal">
+          <div class="yr">2024</div>
+          <h4>EZTRANZ</h4>
+          <p>A public transport information system for more environmentally friendly access to transit.</p><span
+            class="tag">UX Design</span>
+        </div>
+        <div class="ocard reveal">
+          <div class="yr">2024</div>
+          <h4>SIPEDANG</h4>
+          <p>A management information system for Padang restaurants to streamline daily operations.</p><span
+            class="tag">Java</span><span class="tag">OOP</span>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="card reveal">
-        <div class="card-viz"><div class="bar" data-h="30" style="background:linear-gradient(180deg,var(--pink),rgba(255,107,214,.3))"></div><div class="bar" data-h="50" style="background:linear-gradient(180deg,var(--pink),rgba(255,107,214,.3))"></div><div class="bar" data-h="42" style="background:linear-gradient(180deg,var(--pink),rgba(255,107,214,.3))"></div><div class="bar" data-h="65" style="background:linear-gradient(180deg,var(--pink),rgba(255,107,214,.3))"></div><div class="bar" data-h="58" style="background:linear-gradient(180deg,var(--pink),rgba(255,107,214,.3))"></div><div class="bar" data-h="80" style="background:linear-gradient(180deg,var(--pink),rgba(255,107,214,.3))"></div></div>
-        <div class="card-body">
-          <span class="pill">Dashboard &middot; Tableau</span>
-          <h3>NYC Traffic Accident Patterns Dashboard</h3>
-          <p>Six interactive Tableau visualizations to read traffic accident patterns in New York City, covering victims, causes, timing, and location. Designed so even a non-technical reader can grasp the insights at a glance.</p>
-          <div class="card-stat"><div><b>6 views</b><span>dashboard</span></div><div><b>4 dimensions</b><span>victim/cause/time/location</span></div></div>
-          <div class="card-tags"><span class="tag">Tableau</span><span class="tag">Data Visualization</span></div>
-        </div>
+  <section id="contact" class="contact">
+    <div class="wrap reveal">
+      <h2>Let's <span class="hl">connect.</span></h2>
+      <p>Got a question about my projects, or want to talk data and business? Drop me an email.</p>
+      <a href="mailto:dafyaaa11@gmail.com" class="mono-link">dafyaaa11@gmail.com</a>
+      <div class="socials">
+        <a href="https://www.linkedin.com/in/dafyalvaro/">LinkedIn</a>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="other">
-  <div class="wrap">
-    <div class="sec-head reveal"><span class="sec-num">04</span><span class="sec-title">More Projects</span><span class="sec-line"></span></div>
-    <div class="other">
-      <div class="ocard reveal"><div class="yr">2025</div><h4>Import-ant</h4><p>An app to help first-time importers and SMEs estimate import costs and choose a logistics provider. Built from a needs analysis of two user segments.</p><span class="tag">Requirements Analysis</span><span class="tag">UX Design</span></div>
-      <div class="ocard reveal"><div class="yr">2025</div><h4>GarageLive</h4><p>An automotive workshop app concept aimed at improving service efficiency, complete with a cost plan and a map of team responsibilities.</p><span class="tag">Project Management</span><span class="tag">UX Design</span></div>
-      <div class="ocard reveal"><div class="yr">2024 / 2025</div><h4>SkillSync</h4><p>A web platform connecting individual skills with company needs through training courses.</p><span class="tag">Database</span><span class="tag">HTML</span></div>
-      <div class="ocard reveal"><div class="yr">2025</div><h4>ALEXANDRIA</h4><p>A digital book-lending system to manage transactions and monitor library stock.</p><span class="tag">MySQL</span><span class="tag">Visual Studio</span></div>
-      <div class="ocard reveal"><div class="yr">2025</div><h4>Jaga Mentalmu</h4><p>A digital mental health service app for online consultations with psychologists and psychiatrists.</p><span class="tag">UX Design</span></div>
-      <div class="ocard reveal"><div class="yr">2024</div><h4>EZTRANZ</h4><p>A public transport information system for more environmentally friendly access to transit.</p><span class="tag">UX Design</span></div>
-      <div class="ocard reveal"><div class="yr">2024</div><h4>SIPEDANG</h4><p>A management information system for Padang restaurants to streamline daily operations.</p><span class="tag">Java</span><span class="tag">OOP</span></div>
+  <footer>
+    <div class="wrap">
+      <span>&copy; 2026 Muhammad Dafi Alvaro</span>
+      <span>Universitas Multimedia Nusantara</span>
     </div>
-  </div>
-</section>
+  </footer>
 
-<section id="contact" class="contact">
-  <div class="wrap reveal">
-    <h2>Let's <span class="hl">connect.</span></h2>
-    <p>Got a question about my projects, or want to talk data and business? Drop me an email.</p>
-    <a href="mailto:dafyaaa11@gmail.com" class="mono-link">dafyaaa11@gmail.com</a>
-    <div class="socials">
-      <a href="https://www.linkedin.com/in/dafyalvaro/">LinkedIn</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <span>&copy; 2026 Muhammad Dafi Alvaro</span>
-    <span>Universitas Multimedia Nusantara</span>
-  </div>
-</footer>
-
-<script>
-const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-const phrases=["Data Analyst","Business Analyst","Data talks. I listen better."];
-const typed=document.getElementById('typed');let pi=0,ci=0,del=false;
-function tick(){const p=phrases[pi];typed.textContent=p.slice(0,ci);
-  if(!del){ci++;if(ci>p.length){del=true;setTimeout(tick,1400);return}}
-  else{ci--;if(ci<0){del=false;pi=(pi+1)%phrases.length;ci=0}}
-  setTimeout(tick,del?45:90);}
-tick();
-const numIo=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){const el=e.target,t=+el.dataset.target,sfx=el.dataset.suffix||"";let n=0;const step=Math.max(1,t/40);const run=()=>{n+=step;if(n>=t){el.textContent=t+sfx}else{el.textContent=Math.floor(n)+sfx;requestAnimationFrame(run)}};run();numIo.unobserve(el)}})},{threshold:.6});
-document.querySelectorAll('.num').forEach(el=>numIo.observe(el));
-const barIo=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.bar').forEach((b,i)=>{setTimeout(()=>{b.style.height=b.dataset.h+'%'},i*90)});barIo.unobserve(e.target)}})},{threshold:.3});
-document.querySelectorAll('.card-viz').forEach(el=>barIo.observe(el));
-const prog=document.getElementById('prog'),nav=document.getElementById('nav');let last=0;
-addEventListener('scroll',()=>{const h=document.documentElement;const sc=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.width=(sc*100)+'%';
-  const y=h.scrollTop;if(y>last&&y>300){nav.classList.add('hide')}else{nav.classList.remove('hide')}last=y;},{passive:true});
-const isFine=matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches;
-if(isFine){document.querySelectorAll('.card').forEach(c=>{
-  c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();const px=(e.clientX-r.left)/r.width-.5;const py=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(900px) rotateY(${px*6}deg) rotateX(${-py*6}deg) translateY(-4px)`});
-  c.addEventListener('mouseleave',()=>{c.style.transform=''});});
-document.querySelectorAll('.skill').forEach(s=>{s.addEventListener('mousemove',e=>{const r=s.getBoundingClientRect();s.style.setProperty('--mx',(e.clientX-r.left)+'px');s.style.setProperty('--my',(e.clientY-r.top)+'px')})});
-}
-</script>
+  <script>
+    const io = new IntersectionObserver((es) => { es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } }) }, { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    const phrases = ["Data Analyst", "Business Analyst", "Data talks. I listen better."];
+    const typed = document.getElementById('typed'); let pi = 0, ci = 0, del = false;
+    function tick() {
+      const p = phrases[pi]; typed.textContent = p.slice(0, ci);
+      if (!del) { ci++; if (ci > p.length) { del = true; setTimeout(tick, 1400); return } }
+      else { ci--; if (ci < 0) { del = false; pi = (pi + 1) % phrases.length; ci = 0 } }
+      setTimeout(tick, del ? 45 : 90);
+    }
+    tick();
+    const numIo = new IntersectionObserver((es) => { es.forEach(e => { if (e.isIntersecting) { const el = e.target, t = +el.dataset.target, sfx = el.dataset.suffix || ""; let n = 0; const step = Math.max(1, t / 40); const run = () => { n += step; if (n >= t) { el.textContent = t + sfx } else { el.textContent = Math.floor(n) + sfx; requestAnimationFrame(run) } }; run(); numIo.unobserve(el) } }) }, { threshold: .6 });
+    document.querySelectorAll('.num').forEach(el => numIo.observe(el));
+    const barIo = new IntersectionObserver((es) => { es.forEach(e => { if (e.isIntersecting) { e.target.querySelectorAll('.bar').forEach((b, i) => { setTimeout(() => { b.style.height = b.dataset.h + '%' }, i * 90) }); barIo.unobserve(e.target) } }) }, { threshold: .3 });
+    document.querySelectorAll('.card-viz').forEach(el => barIo.observe(el));
+    const prog = document.getElementById('prog'), nav = document.getElementById('nav'); let last = 0;
+    addEventListener('scroll', () => {
+      const h = document.documentElement; const sc = h.scrollTop / (h.scrollHeight - h.clientHeight); prog.style.width = (sc * 100) + '%';
+      const y = h.scrollTop; if (y > last && y > 300) { nav.classList.add('hide') } else { nav.classList.remove('hide') } last = y;
+    }, { passive: true });
+    const isFine = matchMedia('(pointer:fine)').matches && !matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if (isFine) {
+      document.querySelectorAll('.card').forEach(c => {
+        c.addEventListener('mousemove', e => { const r = c.getBoundingClientRect(); const px = (e.clientX - r.left) / r.width - .5; const py = (e.clientY - r.top) / r.height - .5; c.style.transform = `perspective(900px) rotateY(${px * 6}deg) rotateX(${-py * 6}deg) translateY(-4px)` });
+        c.addEventListener('mouseleave', () => { c.style.transform = '' });
+      });
+      document.querySelectorAll('.skill').forEach(s => { s.addEventListener('mousemove', e => { const r = s.getBoundingClientRect(); s.style.setProperty('--mx', (e.clientX - r.left) + 'px'); s.style.setProperty('--my', (e.clientY - r.top) + 'px') }) });
+    }
+  </script>
 </body>
+
 </html>
