@@ -789,6 +789,16 @@
     .exp-list li { font-size: 14px; color: var(--mute); padding-left: 14px; position: relative; line-height: 1.6 }
     .exp-list li::before { content: '▸'; position: absolute; left: 0; color: var(--acc); font-size: 11px; top: 3px }
 
+    /* languages */
+    .lang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px }
+    .lang-card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 24px; display: flex; align-items: center; gap: 20px; transition: .3s }
+    .lang-card:hover { border-color: var(--acc); transform: translateY(-4px) }
+    .lang-flag { font-size: 36px; line-height: 1; flex-shrink: 0 }
+    .lang-name { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 600; margin-bottom: 4px }
+    .lang-level { font-size: 13px; color: var(--mute); margin-bottom: 12px }
+    .lang-bar { height: 4px; background: var(--line); border-radius: 99px; overflow: hidden; width: 100% }
+    .lang-fill { height: 100%; border-radius: 99px; width: 0; transition: width 1s cubic-bezier(.2,.8,.2,1) }
+
     /* cursor glow */
     #cursor-glow {
       position: fixed; width: 420px; height: 420px; border-radius: 50%;
@@ -1001,8 +1011,8 @@
             <span class="exp-year">May 2026 – Present</span>
           </div>
           <ul class="exp-list">
-            <li>Menjalankan peran sebagai Business Analyst dalam lingkungan profesional, mendukung proses analisis kebutuhan bisnis dan pengembangan solusi berbasis data.</li>
-            <li>Berkolaborasi langsung dengan tim internal untuk memahami proses operasional dan menghasilkan rekomendasi yang relevan bagi pengambilan keputusan.</li>
+            <li>Performed business analyst responsibilities in a professional setting, supporting business requirements analysis and data-driven solution development.</li>
+            <li>Collaborated directly with internal teams to understand operational processes and deliver actionable recommendations for decision-making.</li>
           </ul>
         </div>
         <div class="exp-card reveal">
@@ -1015,8 +1025,8 @@
             <span class="exp-year">2022 – 2023</span>
           </div>
           <ul class="exp-list">
-            <li>Mengawasi dan mengevaluasi kinerja pengurus OSIS (sekbid 1&amp;2) untuk memastikan setiap program kerja terlaksana sesuai rencana dan ketetapan organisasi.</li>
-            <li>Menampung dan mengelola aspirasi siswa secara sistematis untuk disampaikan kepada pihak sekolah atau OSIS sebagai dasar pengambilan keputusan.</li>
+            <li>Supervised and evaluated the performance of OSIS board members (Division 1&amp;2) to ensure all work programs were executed in line with organizational plans.</li>
+            <li>Systematically gathered and managed student aspirations to be presented to school management and OSIS as a basis for decision-making.</li>
           </ul>
         </div>
         <div class="exp-card reveal">
@@ -1029,8 +1039,8 @@
             <span class="exp-year">2022</span>
           </div>
           <ul class="exp-list">
-            <li>Mengkoordinasikan mobilisasi dan inspeksi peralatan di seluruh lokasi acara, memastikan layout panggung sesuai dengan standar keamanan dan kebutuhan pengisi acara.</li>
-            <li>Bertanggung jawab atas inventarisasi aset: pendataan barang masuk, pemeliharaan selama acara, hingga pengembalian peralatan sewaan maupun milik sekolah.</li>
+            <li>Coordinated the mobilization and inspection of equipment across all event venues, ensuring stage layout met safety standards and performer requirements.</li>
+            <li>Managed full asset inventory: recording incoming items, maintenance throughout the event, and returning rented and school-owned equipment.</li>
           </ul>
         </div>
         <div class="exp-card reveal">
@@ -1043,8 +1053,8 @@
             <span class="exp-year">Dec 2025 – Mar 2026</span>
           </div>
           <ul class="exp-list">
-            <li>Melayani pelanggan secara langsung di toko, membantu proses penjualan produk fashion dari awal hingga transaksi selesai.</li>
-            <li>Mengelola display produk dan memastikan ketersediaan stok di floor sesuai kebutuhan operasional harian.</li>
+            <li>Assisted customers directly in-store, guiding them through the sales process from product selection to completed transactions.</li>
+            <li>Managed product displays and ensured floor stock availability in line with daily operational needs.</li>
           </ul>
         </div>
         <div class="exp-card reveal">
@@ -1057,8 +1067,8 @@
             <span class="exp-year">Dec 2023 – Feb 2024</span>
           </div>
           <ul class="exp-list">
-            <li>Bertugas sebagai anggota KPPS dalam penyelenggaraan Pemilu 2024, memastikan proses pemungutan dan penghitungan suara berjalan sesuai prosedur KPU.</li>
-            <li>Berkoordinasi aktif dengan anggota tim dan masyarakat setempat untuk menjaga kelancaran, ketertiban, dan transparansi jalannya pemilihan.</li>
+            <li>Served as a KPPS member during the 2024 General Election, ensuring voting and vote-counting processes followed official KPU procedures.</li>
+            <li>Actively coordinated with team members and the local community to maintain the smooth, orderly, and transparent conduct of the election.</li>
           </ul>
         </div>
       </div>
@@ -1271,6 +1281,30 @@
     </div>
   </section>
 
+  <section id="languages">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="sec-num">07</span><span class="sec-title">Languages</span><span class="sec-line"></span></div>
+      <div class="lang-grid">
+        <div class="lang-card reveal">
+          <div class="lang-flag">🇮🇩</div>
+          <div>
+            <h4 class="lang-name">Indonesian</h4>
+            <p class="lang-level">Native or bilingual proficiency</p>
+            <div class="lang-bar"><div class="lang-fill" data-w="100" style="background:var(--acc)"></div></div>
+          </div>
+        </div>
+        <div class="lang-card reveal">
+          <div class="lang-flag">🇬🇧</div>
+          <div>
+            <h4 class="lang-name">English</h4>
+            <p class="lang-level">Professional working proficiency</p>
+            <div class="lang-bar"><div class="lang-fill" data-w="75" style="background:var(--acc2)"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="contact" class="contact">
     <div class="wrap reveal">
       <h2>Let's <span class="hl">connect.</span></h2>
@@ -1360,6 +1394,17 @@
       });
     }, { threshold: .15 });
     document.querySelectorAll('.skill, .card-body, .ocard').forEach(el => tagIo.observe(el));
+
+    // language bar animation
+    const langIo = new IntersectionObserver((es) => {
+      es.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.lang-fill').forEach(f => { f.style.width = f.dataset.w + '%' });
+          langIo.unobserve(e.target);
+        }
+      });
+    }, { threshold: .3 });
+    document.querySelectorAll('.lang-card').forEach(el => langIo.observe(el));
 
     // hire toast — show after 8s or after scrolling 60%
     const toast = document.getElementById('hire-toast');
