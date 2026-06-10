@@ -766,6 +766,29 @@
       .bar { transition: none }
     }
 
+    /* timeline */
+    .timeline { position: relative; padding-left: 28px }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(180deg, var(--acc), var(--line), transparent) }
+    .tl-item { position: relative; padding-bottom: 40px; display: flex; gap: 20px; align-items: flex-start }
+    .tl-item:last-child { padding-bottom: 0 }
+    .tl-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--acc); border: 2px solid var(--bg); flex-shrink: 0; margin-top: 6px; position: absolute; left: -33px; box-shadow: 0 0 10px rgba(0,229,160,.5) }
+    .tl-period { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--acc2); margin-bottom: 4px }
+    .tl-title { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 4px }
+    .tl-sub { font-size: 13px; color: var(--mute) }
+
+    /* experience */
+    .exp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px }
+    .exp-card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 26px; transition: .3s }
+    .exp-card:hover { border-color: var(--acc2); transform: translateY(-4px); box-shadow: 0 14px 36px rgba(0,0,0,.4) }
+    .exp-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 16px }
+    .exp-badge { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--acc); letter-spacing: .5px; text-transform: uppercase; display: block; margin-bottom: 6px }
+    .exp-title { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; color: var(--ink); line-height: 1.3 }
+    .exp-org { font-size: 13px; color: var(--mute); margin-top: 3px }
+    .exp-year { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--mute); white-space: nowrap; padding-top: 2px }
+    .exp-list { list-style: none; padding: 0; border-top: 1px solid var(--line); padding-top: 14px; display: flex; flex-direction: column; gap: 10px }
+    .exp-list li { font-size: 14px; color: var(--mute); padding-left: 14px; position: relative; line-height: 1.6 }
+    .exp-list li::before { content: '▸'; position: absolute; left: 0; color: var(--acc); font-size: 11px; top: 3px }
+
     /* cursor glow */
     #cursor-glow {
       position: fixed; width: 420px; height: 420px; border-radius: 50%;
@@ -868,6 +891,8 @@
       <div class="logo">dafi's<span>.</span>Portafolio</div>
       <div class="nav-links">
         <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
         <a href="#work">Projects</a>
         <a href="#other">More</a>
@@ -938,9 +963,83 @@
     </div>
   </section>
 
+  <section id="education">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="sec-num">02</span><span class="sec-title">Education</span><span class="sec-line"></span></div>
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-period">2023 – 2027</div>
+            <h4 class="tl-title">Universitas Multimedia Nusantara</h4>
+            <p class="tl-sub">S1 Sistem Informasi &middot; Peminatan Big Data</p>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-period">2020 – 2023</div>
+            <h4 class="tl-title">SMAN 8 Tangerang</h4>
+            <p class="tl-sub">IPA</p>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-period">2017 – 2020</div>
+            <h4 class="tl-title">SMP Al-Fityan School Tangerang</h4>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-period">2011 – 2017</div>
+            <h4 class="tl-title">SDIT Granada</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="sec-num">03</span><span class="sec-title">Experience</span><span class="sec-line"></span></div>
+      <div class="exp-grid">
+        <div class="exp-card reveal">
+          <div class="exp-top">
+            <div>
+              <span class="exp-badge">Organizational</span>
+              <h4 class="exp-title">Koordinator Komisi A &middot; MPK</h4>
+              <p class="exp-org">Majelis Permusyawaratan Kelas</p>
+            </div>
+            <span class="exp-year">2022 – 2023</span>
+          </div>
+          <ul class="exp-list">
+            <li>Mengawasi dan mengevaluasi kinerja pengurus OSIS (sekbid 1&amp;2) untuk memastikan setiap program kerja terlaksana sesuai rencana dan ketetapan organisasi.</li>
+            <li>Menampung dan mengelola aspirasi siswa secara sistematis untuk disampaikan kepada pihak sekolah atau OSIS sebagai dasar pengambilan keputusan.</li>
+          </ul>
+        </div>
+        <div class="exp-card reveal">
+          <div class="exp-top">
+            <div>
+              <span class="exp-badge">Event</span>
+              <h4 class="exp-title">Koordinator Divisi Peralatan &middot; FUTURISTIK</h4>
+              <p class="exp-org">SMAN 8 Tangerang</p>
+            </div>
+            <span class="exp-year">2022</span>
+          </div>
+          <ul class="exp-list">
+            <li>Mengkoordinasikan mobilisasi dan inspeksi peralatan di seluruh lokasi acara, memastikan layout panggung sesuai dengan standar keamanan dan kebutuhan pengisi acara.</li>
+            <li>Bertanggung jawab atas inventarisasi aset: pendataan barang masuk, pemeliharaan selama acara, hingga pengembalian peralatan sewaan maupun milik sekolah.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="skills">
     <div class="wrap">
-      <div class="sec-head reveal"><span class="sec-num">02</span><span class="sec-title">Skills</span><span
+      <div class="sec-head reveal"><span class="sec-num">04</span><span class="sec-title">Skills</span><span
           class="sec-line"></span></div>
       <div class="skill-grid">
         <div class="skill reveal">
@@ -975,7 +1074,7 @@
 
   <section id="work">
     <div class="wrap">
-      <div class="sec-head reveal"><span class="sec-num">03</span><span class="sec-title">Featured Projects</span><span
+      <div class="sec-head reveal"><span class="sec-num">05</span><span class="sec-title">Featured Projects</span><span
           class="sec-line"></span></div>
       <div class="proj">
 
@@ -1093,7 +1192,7 @@
 
   <section id="other">
     <div class="wrap">
-      <div class="sec-head reveal"><span class="sec-num">04</span><span class="sec-title">More Projects</span><span
+      <div class="sec-head reveal"><span class="sec-num">06</span><span class="sec-title">More Projects</span><span
           class="sec-line"></span></div>
       <div class="other">
         <div class="ocard reveal">
